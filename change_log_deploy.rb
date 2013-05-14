@@ -2,6 +2,7 @@
 require 'ostruct'
 require 'optparse'
 require File.dirname(__FILE__) + "/libs/repository/repository"
+require File.dirname(__FILE__) + "/libs/fileReader/file_system_reader"
 
 class ChangeLogDeploy
   attr_reader :options, :arguments, :configuration
@@ -11,7 +12,23 @@ class ChangeLogDeploy
     @arguments = arguments
     @options = OpenStruct.new
     parse_options
-    #repository = Repository.new @options.path_change_log_configuration
+    repository = Repository.new @options.path_change_log_configuration
+#    puts @options.path_change_log_configuration
+#    puts File.mtime(@options.path_change_log_configuration)
+#    if(File.mtime(@options.path_change_log_configuration) < File.mtime('change_log_deploy.rb'))
+#      puts 'opa'
+#    end
+#    
+#    file_system = FileSystemReader.new
+#    file_system.get_files_change_log("/home/marco/ruby_changeLogDeploy/tests/libs/fileReader/changeLogDeploy", "txt").reverse_each { |file|
+#      puts file.path, file.mtime
+#    }
+    
+    puts repository.get_path_change_log_deploy
+    repository.get_files_change_log.reverse_each { |file|
+      puts file.path, file.mtime
+    }
+    
   end
   
   def parse_options

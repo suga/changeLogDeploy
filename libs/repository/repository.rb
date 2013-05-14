@@ -1,26 +1,36 @@
-require File.dirname(__FILE__) + "/../fileReader/yaml_reader"
+require File.dirname(__FILE__) + "/repository_configuration"
+require File.dirname(__FILE__) + "/repository_file_system"
 
 class Repository
-  attr_reader :path_file_yaml, :config_yml
+  attr_reader :repository_configuration
   
   def initialize(path_change_log_configuration)
-    @config_yml = YamlReader.new(path_change_log_configuration)
+    @path_change_log_configuration = path_change_log_configuration
+    @repository_configuration = self.extend(RepositoryConfiguration).configuration_repository(@path_change_log_configuration)
   end
   
-  def config_yml_reader
-    @config_yml.configurations
+  def repository_file_system
+    self.extend(RepositoryFileSystem).configuration_repository(get_path_change_log_deploy, get_file_extension)
   end
   
   def get_path_change_log_deploy
-    config_yml_reader['changeLogPath']
+    @repository_configuration.get_path_change_log_deploy
   end  
   
   def get_last_reader_file
-    config_yml_reader['lastReaderFile']
+    @repository_configuration.get_last_reader_file
   end
   
   def get_notification_emails
-    config_yml_reader['notificationEmails']
+    @repository_configuration.get_notification_emails
+  end
+  
+  def get_file_extension
+    @repository_configuration.get_file_extension
+  end
+  
+  def get_files_change_log
+    repository_file_system.get_files
   end
   
 end
