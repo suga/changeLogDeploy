@@ -1,6 +1,6 @@
 ## YAML Template.
 ---
-changeLogPath: /home/marco/ruby_changeLogDeploy/tests/libs/fileReader/changeLogDeploy
+changeLogPath: /home/marco/ruby_changeLogDeploy/spec/changeLogDeploy
 lastReaderFile:
 notificationEmails: sugamele.marco@gmail.com, hlegius@gmail.com
 extensionFiles: txt

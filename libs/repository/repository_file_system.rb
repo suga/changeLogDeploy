@@ -10,8 +10,7 @@ module RepositoryFileSystem
   end
   
   def get_files
-    file_system = FileSystemReader.new
-    file_system.get_files_change_log(@path_to_reader, @extension_file)
+    FileSystemReader.get_files_change_log(@path_to_reader, @extension_file)
   end
   
 end
