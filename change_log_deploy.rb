@@ -25,7 +25,7 @@ class ChangeLogDeploy
 #    }
     
     puts repository.get_path_change_log_deploy
-    repository.get_files_change_log.reverse_each { |file|
+    repository.get_files_change_log.each { |file|
       puts file.path, file.mtime
     }
     

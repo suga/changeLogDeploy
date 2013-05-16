@@ -1,6 +1,5 @@
-## YAML Template.
 ---
 changeLogPath: spec/changeLogDeploy
-lastReaderFile:
+lastReaderFile: 
 notificationEmails: sugamele.marco@gmail.com, hlegius@gmail.com
 extensionFiles: txt

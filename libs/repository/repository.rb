@@ -10,7 +10,7 @@ class Repository
   end
   
   def repository_file_system
-    self.extend(RepositoryFileSystem).configuration_repository(get_path_change_log_deploy, get_file_extension)
+    self.extend(RepositoryFileSystem).configuration_repository(@repository_configuration)
   end
   
   def get_path_change_log_deploy
