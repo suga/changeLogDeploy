@@ -6,7 +6,7 @@ describe YamlReader, '.configurations' do
   end
 
   it "checks if the path to the directory of change log is correct" do
-    expect("/home/marco/ruby_changeLogDeploy/spec/changeLogDeploy").to eq(@yaml.configurations['changeLogPath'])
+    expect("spec/changeLogDeploy").to eq(@yaml.configurations['changeLogPath'])
   end
   
   it "confirms that the last file read is empty" do

@@ -6,7 +6,7 @@ describe Repository do
   end
 
   it "checks if the path to the directory of change log is correct" do
-    expect("/home/marco/ruby_changeLogDeploy/spec/changeLogDeploy").to eq(@repository.get_path_change_log_deploy)
+    expect("spec/changeLogDeploy").to eq(@repository.get_path_change_log_deploy)
   end
   
   it "confirms that the last file read is empty" do

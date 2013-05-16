@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + "/../../../libs/validators/validator_path"
 
-describe ValidatorPathTest do
+describe ValidatorPath do
   before(:all) do
     @path_not_existis = '/tmp/not_exists.yml'    
     @path_exists = '/tmp/test_config.yml'
