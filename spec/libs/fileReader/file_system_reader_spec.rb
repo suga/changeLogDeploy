@@ -37,4 +37,19 @@ describe FileSystemReader do
     expect(FileSystemReader.get_files_change_log("/tmp", "txt").size).to eq(3)
   end
  
+  it "Temos um arquivo novo, retornamos 1" do
+    FileUtils.touch @file3.path, :mtime => Time.new + 60*60*12
+    yml = YAML.load_file("spec/changeLogConfigTest.yml")
+    yml["lastReaderFile"] = @file3.mtime
+    File.open("spec/changeLogConfigTest.yml", 'w+') {|f| f.write(yml.to_yaml) }
+
+    @file4 = Tempfile.new(['20130516','.txt'])
+    FileUtils.touch @file4.path, :mtime => Time.new + 60*60*24
+    expect(FileSystemReader.get_files_change_log("/tmp", "txt", yml["lastReaderFile"]).size).to eq(1)
+
+    @file4.close
+    @file4.unlink
+
+  end
+
 end
