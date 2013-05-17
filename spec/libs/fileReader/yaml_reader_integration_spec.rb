@@ -14,7 +14,7 @@ describe YamlReader, '.configurations' do
   end
   
   it "get the list of emails separated by commas" do
-    expect("sugamele.marco@gmail.com, hlegius@gmail.com").to eq(@yaml.configurations['notificationEmails'])
+    expect("sugamele.marco@gmail.com , hlegius@gmail.com").to eq(@yaml.configurations['notificationEmails'])
   end
   
 end
