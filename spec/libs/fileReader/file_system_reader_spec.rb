@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + "/../../../libs/fileReader/file_system_reader"
 require 'tempfile'
 require 'date'
-require 'yaml'
 
 describe FileSystemReader do
   before(:all) do
@@ -26,11 +25,11 @@ describe FileSystemReader do
     File.open("spec/changeLogConfigTest.yml", 'w+') {|f| f.write(yml.to_yaml) }
   end
   
-  it "Nenhum arquivo foi lido, temos que retornar todos os txt" do
+  it "No file was read, we have to return all txt" do
      expect(FileSystemReader.get_files_change_log("/tmp", "txt").size).to eq(3)
   end
 
-  it "O tempo do ultimo arquivo e menor que os que foram criados, retornamos todos" do
+  it "The last time the file is smaller than those created, return all" do
     date = DateTime.new
     yml = YAML.load_file("spec/changeLogConfigTest.yml")
     yml["lastReaderFile"] = (date-10).to_time
@@ -38,10 +37,10 @@ describe FileSystemReader do
     expect(FileSystemReader.get_files_change_log("/tmp", "txt").size).to eq(3)
   end
  
-  it "Temos um arquivo novo, retornamos 1" do
-    FileUtils.touch @file2.path, :mtime => Time.new + 60*60*12
+  it "We have a new file, return one data" do
+    FileUtils.touch @file3.path, :mtime => Time.new + 60*60*12
     yml = YAML.load_file("spec/changeLogConfigTest.yml")
-    yml["lastReaderFile"] = @file2.mtime
+    yml["lastReaderFile"] = @file3.mtime
     File.open("spec/changeLogConfigTest.yml", 'w+') {|f| f.write(yml.to_yaml) }
 
     @file4 = Tempfile.new(['20130516','.txt'])
