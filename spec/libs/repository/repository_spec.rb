@@ -14,7 +14,9 @@ describe Repository do
   end
   
   it "get the list of emails separated by commas" do
-    expect("sugamele.marco@gmail.com, hlegius@gmail.com").to eq(@repository.get_notification_emails)
+    expect(2).to eq(@repository.get_notification_emails.size)
+    expect("sugamele.marco@gmail.com").to eq(@repository.get_notification_emails[0])
+    expect("hlegius@gmail.com").to eq(@repository.get_notification_emails[1])
   end
   
   it "Get the files that will be read to generate the changelog" do

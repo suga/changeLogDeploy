@@ -18,7 +18,7 @@ module RepositoryConfiguration
   end
   
   def get_notification_emails
-    @config_yml.configurations['notificationEmails']
+    @config_yml.configurations['notificationEmails'].split(',').collect{|x| x.strip}
   end
   
   def get_file_extension
