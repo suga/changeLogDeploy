@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + "/../../../libs/fileReader/file_system_reader"
 require 'tempfile'
 require 'date'
+require 'yaml'
 
 describe FileSystemReader do
   before(:all) do
@@ -38,9 +39,9 @@ describe FileSystemReader do
   end
  
   it "Temos um arquivo novo, retornamos 1" do
-    FileUtils.touch @file3.path, :mtime => Time.new + 60*60*12
+    FileUtils.touch @file2.path, :mtime => Time.new + 60*60*12
     yml = YAML.load_file("spec/changeLogConfigTest.yml")
-    yml["lastReaderFile"] = @file3.mtime
+    yml["lastReaderFile"] = @file2.mtime
     File.open("spec/changeLogConfigTest.yml", 'w+') {|f| f.write(yml.to_yaml) }
 
     @file4 = Tempfile.new(['20130516','.txt'])
