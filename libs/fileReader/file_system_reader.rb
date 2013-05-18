@@ -14,4 +14,8 @@ class FileSystemReader
     files_change_logs
   end
 
+  def self.get_content file
+    File.open(file.path, 'rb') { |f| f.read.to_s.force_encoding("UTF-8") }
+  end
+  
 end

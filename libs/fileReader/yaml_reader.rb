@@ -6,16 +6,18 @@ class YamlReader
   
   def initialize(path_change_log_configuration)
     @yaml_configuration = YAML.load_file(path_change_log_configuration)
-    emails_to_array    
   end
   
   def configurations
+    configure_emails_to_array
     @yaml_configuration
   end
   
   private
-  def emails_to_array 
-    @yaml_configuration['notificationEmails'] = @yaml_configuration['notificationEmails'].split(',').collect{|x| x.strip}
+  def configure_emails_to_array
+    if (!@yaml_configuration['notificationEmails'].kind_of?(Array))  
+        @yaml_configuration['notificationEmails'] = @yaml_configuration['notificationEmails'].split(',').collect{|x| x.strip}
+    end
   end
     
 end
