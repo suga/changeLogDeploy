@@ -29,8 +29,16 @@ class Repository
     @repository_configuration.get_file_extension
   end
   
+  def get_limit_threads
+    @repository_configuration.get_limit_threads
+  end
+  
   def get_files_change_log
     repository_file_system.get_files
+  end
+  
+  def get_change_log
+    repository_file_system.get_content_files
   end
   
 end

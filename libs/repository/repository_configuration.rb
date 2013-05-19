@@ -25,4 +25,8 @@ module RepositoryConfiguration
     @config_yml.configurations['extensionFiles']
   end
   
+  def get_limit_threads
+    @config_yml.configurations['limitThreads']
+  end
+  
 end
