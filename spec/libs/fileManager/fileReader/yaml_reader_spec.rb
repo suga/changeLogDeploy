@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/../../../libs/fileReader/yaml_reader"
+require File.dirname(__FILE__) + "/../../../../libs/fileManager/fileReader/yaml_reader"
 
 describe YamlReader, '.configurations' do
   context "yaml return array" do 

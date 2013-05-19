@@ -87,7 +87,7 @@ describe PoolThreads do
       files.push(@file9)
       
       contents = PoolThreads.new files
-      contents.run_limit_threads 4
+      contents.run_limit_threads 9
       merge_contents = contents.get_merge_content_files
 
       merge_contents.should match(/Description fixeds and bugfix\r\nfile1/)

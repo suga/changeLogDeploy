@@ -1,5 +1,5 @@
 # encoding: utf-8
-require File.dirname(__FILE__) + "/../../../libs/fileReader/file_system_reader"
+require File.dirname(__FILE__) + "/../../../../libs/fileManager/fileReader/file_system_reader"
 require 'tempfile'
 require 'date'
 require 'yaml'

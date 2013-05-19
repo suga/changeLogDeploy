@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/../fileReader/yaml_reader"
+require File.dirname(__FILE__) + "/../fileManager/fileReader/yaml_reader"
 
 module RepositoryConfiguration
   attr_reader :path_file_yaml, :config_yml

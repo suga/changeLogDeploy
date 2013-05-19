@@ -1,8 +1,8 @@
-require File.dirname(__FILE__) + "/../../../libs/fileReader/yaml_reader"
+require File.dirname(__FILE__) + "/../../../../libs/fileManager/fileReader/yaml_reader"
 
 describe YamlReader, '.configurations' do
   before(:each) do
-    @yaml = YamlReader.new(File.dirname(__FILE__) + "/../../changeLogConfigTest.yml")
+    @yaml = YamlReader.new(File.dirname(__FILE__) + "/../../../changeLogConfigTest.yml")
   end
 
   it "checks if the path to the directory of change log is correct" do

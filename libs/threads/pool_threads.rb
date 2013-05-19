@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/../fileReader/file_system_reader"
+require File.dirname(__FILE__) + "/../fileManager/fileReader/file_system_reader"
 require 'thread'
 
 class PoolThreads
