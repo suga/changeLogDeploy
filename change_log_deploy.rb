@@ -1,9 +1,8 @@
 #!/usr/bin/ruby
 require 'ostruct'
 require 'optparse'
+require File.dirname(__FILE__) + "/libs/validators/validator_path"
 require File.dirname(__FILE__) + "/libs/repository/repository"
-require File.dirname(__FILE__) + "/libs/fileReader/file_system_reader"
-require File.dirname(__FILE__) + "/libs/threads/pool_threads"
 
 class ChangeLogDeploy
   attr_reader :options, :arguments, :configuration
@@ -13,6 +12,8 @@ class ChangeLogDeploy
     @arguments = arguments
     @options = OpenStruct.new
     parse_options
+    validate_args = ValidatorPath.new @options.path_change_log_configuration
+    validate_args.is_valid?
     repository = Repository.new @options.path_change_log_configuration
     puts repository.get_change_log
     
