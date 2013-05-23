@@ -16,6 +16,7 @@ class ChangeLogDeploy
     validate_args.is_valid?
     repository = Repository.new @options.path_change_log_configuration
     puts repository.get_change_log
+    puts repository.get_last_file_reader
     
   end
   

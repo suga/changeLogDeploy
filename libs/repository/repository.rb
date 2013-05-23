@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + "/repository_configuration"
 require File.dirname(__FILE__) + "/repository_file_system"
 
 class Repository
-  attr_reader :repository_configuration
+  attr_reader :repository_configuration, :repository_file_system
   
   def initialize(path_change_log_configuration)
     @path_change_log_configuration = path_change_log_configuration
@@ -10,7 +10,10 @@ class Repository
   end
   
   def repository_file_system
-    self.extend(RepositoryFileSystem).configuration_repository(@repository_configuration)
+    if(!@repository_file_system.is_a? RepositoryFileSystem) 
+      @repository_file_system = self.extend(RepositoryFileSystem).configuration_repository(@repository_configuration)
+    end      
+    @repository_file_system
   end
   
   def get_path_change_log_deploy
@@ -41,4 +44,8 @@ class Repository
     repository_file_system.get_content_files
   end
   
+  def get_last_file_reader
+    repository_file_system.last_file_reader
+  end
+
 end
