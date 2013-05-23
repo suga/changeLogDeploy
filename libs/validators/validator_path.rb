@@ -7,19 +7,19 @@ class ValidatorPath
   end
   
   def config_exists_in_file_system?
-    if(!File.exists?(@path_to_validate))
+    unless(File.exists?(@path_to_validate))
       raise FileException, "File not found. The specified file was #{@path_to_validate}"
     end
   end
   
   def the_file_has_permission_read? 
-    if(!File.readable?(@path_to_validate))
+    unless(File.readable?(@path_to_validate))
       raise FileException, "The file has not  permission reader. The specified file was #{@path_to_validate}"
     end
   end
   
   def the_file_has_permission_write? 
-    if(!File.writable?(@path_to_validate))
+    unless(File.writable?(@path_to_validate))
       raise FileException, "The file has not  permission write. The specified file was #{@path_to_validate}"
     end
   end

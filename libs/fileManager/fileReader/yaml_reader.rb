@@ -15,7 +15,7 @@ class YamlReader
   
   private
   def configure_emails_to_array
-    if (!@yaml_configuration['notificationEmails'].kind_of?(Array))  
+    unless (@yaml_configuration['notificationEmails'].kind_of?(Array))  
         @yaml_configuration['notificationEmails'] = @yaml_configuration['notificationEmails'].split(',').collect{|x| x.strip}
     end
   end

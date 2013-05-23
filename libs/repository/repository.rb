@@ -10,7 +10,7 @@ class Repository
   end
   
   def repository_file_system
-    if(!@repository_file_system.is_a? RepositoryFileSystem) 
+    unless(@repository_file_system.is_a? RepositoryFileSystem) 
       @repository_file_system = self.extend(RepositoryFileSystem).configuration_repository(@repository_configuration)
     end      
     @repository_file_system
