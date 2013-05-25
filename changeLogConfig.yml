@@ -1,7 +1,7 @@
 ## YAML Template.
 ---
 changeLogPath: /home/marco/ruby_changeLogDeploy/changeLogs
-lastReaderFile:
+lastReadFile:
 notificationEmails: sugamele.marco@gmail.com, hlegius@gmail.com
 extensionFiles: txt
 limitThreads: 4

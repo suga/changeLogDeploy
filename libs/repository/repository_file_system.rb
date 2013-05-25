@@ -2,24 +2,24 @@ require File.dirname(__FILE__) + "/../fileManager/fileReader/file_system_reader"
 require File.dirname(__FILE__) + "/../threads/pool_threads"
 
 module RepositoryFileSystem
-  attr_accessor :repository_configuration, :files_change_log
+  attr_accessor :configuration_file, :files_change_log
   
-  def configuration_repository(repository_configuration)
+  def configuration_repository(configuration_file)
     @files_change_log = Array.new    
-    @repository_configuration = repository_configuration
+    @configuration_file = configuration_file
     self
   end
   
   def get_files
     if (@files_change_log.empty?)
-      @files_change_log = FileSystemReader.get_files_change_log(@repository_configuration.get_path_change_log_deploy, @repository_configuration.get_file_extension, @repository_configuration.get_last_reader_file)
+      @files_change_log = FileSystemReader.get_files_change_log(@configuration_file.change_log_path, @configuration_file.extension_files, @configuration_file.last_read_file)
     end
     @files_change_log
   end
   
   def get_content_files
     content = PoolThreads.new get_files
-    content.run_limit_threads @repository_configuration.get_limit_threads
+    content.run_limit_threads @configuration_file.limit_threads
     content.get_merge_content_files
   end
 

@@ -20,7 +20,7 @@ describe FileSystemReader do
 
     after(:all) do
       @array.each { |file| file.close file.unlink }
-      yaml_fixed_last_reader_file(nil)      
+      yaml_fixed_last_read_file(nil)      
     end
 
     it "No file was read, we have to return all txt" do      
@@ -29,14 +29,14 @@ describe FileSystemReader do
 
     it "The last time the file is smaller than those created, return all" do
       date = DateTime.new
-      yaml_fixed_last_reader_file((date-10).to_time)
+      yaml_fixed_last_read_file((date-10).to_time)
       expect(FileSystemReader.get_files_change_log("/tmp", "txt").size).to eq(3)      
     end
 
     it "We have a new file, return one data" do
       
       FileUtils.touch @array[2].path, :mtime => Time.new + 60*60*12
-      yml = yaml_fixed_last_reader_file(@array[2].mtime)
+      yml = yaml_fixed_last_read_file(@array[2].mtime)
       
       @file4 = Tempfile.new(['20130516','.txt'])
       FileUtils.touch @file4.path, :mtime => Time.new + 60*60*24
@@ -48,7 +48,7 @@ describe FileSystemReader do
     end
 
     private
-    def yaml_fixed_last_reader_file(value)
+    def yaml_fixed_last_read_file(value)
       yaml = YAML.load_file("spec/changeLogConfigTest.yml")
       yaml["lastReaderFile"] = value
       File.open("spec/changeLogConfigTest.yml", 'w+') {|f| f.write(yaml.to_yaml) }

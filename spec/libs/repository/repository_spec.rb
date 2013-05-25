@@ -11,7 +11,7 @@ describe Repository do
   end
   
   it "confirms that the last file read is empty" do
-    expect(nil).to eq(@repository.get_last_reader_file)
+    expect(nil).to eq(@repository.get_last_read_file)
   end
   
   it "get the list of emails separated by commas" do

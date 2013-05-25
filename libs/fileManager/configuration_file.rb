@@ -18,8 +18,8 @@ class ConfigurationFile
     @yaml_configuration['changeLogPath']
   end
 
-  def last_reader_file
-    @yaml_configuration['lastReaderFile']
+  def last_read_file
+    @yaml_configuration['lastReadFile']
   end  
 
   def notification_emails
@@ -35,8 +35,8 @@ class ConfigurationFile
     @yaml_configuration['limitThreads']
   end
 
-  def set_last_reader_file(last_reader_file)
-    @yaml_configuration['lastReaderFile'] = last_reader_file
+  def set_last_read_file(last_read_file)
+    @yaml_configuration['lastReadFile'] = last_read_file
   end
 
   def save_configuration

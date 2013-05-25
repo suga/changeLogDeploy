@@ -1,6 +1,7 @@
 ---
 changeLogPath: spec/changeLogDeploy
-lastReaderFile: 
+lastReadFile: 
 notificationEmails: sugamele.marco@gmail.com , hlegius@gmail.com
 extensionFiles: txt
 limitThreads: 4
+lastReaderFile: 

@@ -13,7 +13,7 @@ describe ConfigurationFile do
     end
 
     it "checks if the last file read is correct" do
-      expect(nil).to eq(@configuration.last_reader_file)
+      expect(nil).to eq(@configuration.last_read_file)
     end
 
     it "get the list of emails" do
@@ -49,13 +49,13 @@ describe ConfigurationFile do
     it "Saving information from the last file read" do
 
       configuration = ConfigurationFile.new(@yaml_file.path)
-      expect(nil).to eq(configuration.last_reader_file)
+      expect(nil).to eq(configuration.last_read_file)
 
-      configuration.set_last_reader_file('2013-05-25 01:17:38 -0300')
+      configuration.set_last_read_file('2013-05-25 01:17:38 -0300')
       configuration.save_configuration
 
       new_configuration = ConfigurationFile.new(@yaml_file.path)
-      expect('2013-05-25 01:17:38 -0300').to eq(configuration.last_reader_file)  
+      expect('2013-05-25 01:17:38 -0300').to eq(configuration.last_read_file)  
 
     end  
 
