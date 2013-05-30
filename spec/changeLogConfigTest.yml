@@ -1,7 +1,9 @@
 ---
-changeLogPath: spec/changeLogDeploy
-lastReadFile: 
-notificationEmails: sugamele.marco@gmail.com , hlegius@gmail.com
-extensionFiles: txt
-limitThreads: 4
+change_log_path: spec/changeLogDeploy
+last_read_file: 
+notification_emails: sugamele.marco@gmail.com , hlegius@gmail.com
+extension_files: txt
+limit_threads: 4
+from: noreply@someCompany.com
+subject: Latest updates web area
 lastReaderFile: 

@@ -15,7 +15,7 @@ describe FileSystemFacade do
           array_files.push(temp_file) 
         end
         temp_file = Tempfile.new(['ChangeLogConfig','.yml'])
-        temp_file.write("---\r\nchangeLogPath: /tmp\r\nlastReaderFile: \r\nnotificationEmails: sugamele.marco@gmail.com, hlegius@gmail.com\r\nextensionFiles: txt\r\nlimitThreads: 4")
+        temp_file.write("---\r\nchange_log_path: /tmp\r\nlast_read_file: \r\nnotification_emails: sugamele.marco@gmail.com, hlegius@gmail.com\r\nextension_files: txt\r\nlimit_threads: 4")
         temp_file.rewind
         array_files.push(temp_file)
         array_files

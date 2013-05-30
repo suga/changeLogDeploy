@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + "/../exceptions/configuration_exception"
 require 'yaml'
+require 'ostruct'
 
 class ConfigurationFile
   
@@ -8,35 +9,19 @@ class ConfigurationFile
   def initialize(path_change_log_configuration)
     @path_change_log_configuration = path_change_log_configuration
     begin
-      @yaml_configuration = YAML.load_file(path_change_log_configuration)
+      @yaml_configuration = YAML.load_file(path_change_log_configuration)            
     rescue Exception => e
       raise ConfigurationException.new 'Error reading the configuration file' + e.message
     end  
   end
   
-  def change_log_path
-    @yaml_configuration['changeLogPath']
-  end
-
-  def last_read_file
-    @yaml_configuration['lastReadFile']
+  def configurations
+    emails_to_array
+    OpenStruct.new @yaml_configuration
   end  
 
-  def notification_emails
-    emails_to_array
-    @yaml_configuration['notificationEmails']
-  end
-
-  def extension_files
-    @yaml_configuration['extensionFiles']
-  end
-
-  def limit_threads
-    @yaml_configuration['limitThreads']
-  end
-
   def set_last_read_file(last_read_file)
-    @yaml_configuration['lastReadFile'] = last_read_file
+    @yaml_configuration['last_read_file'] = last_read_file
   end
 
   def save_configuration
@@ -50,14 +35,14 @@ class ConfigurationFile
   
   private 
   def emails_to_array
-    unless (@yaml_configuration['notificationEmails'].kind_of?(Array))  
-      @yaml_configuration['notificationEmails'] = @yaml_configuration['notificationEmails'].split(',').collect{|x| x.strip}
+    unless (@yaml_configuration['notification_emails'].kind_of?(Array))  
+      @yaml_configuration['notification_emails'] = @yaml_configuration['notification_emails'].split(',').collect{|x| x.strip}
     end
   end
 
   def emails_to_string
-    if (@yaml_configuration['notificationEmails'].kind_of?(Array))  
-      @yaml_configuration['notificationEmails'] = @yaml_configuration['notificationEmails'].join(',')
+    if (@yaml_configuration['notification_emails'].kind_of?(Array))  
+      @yaml_configuration['notification_emails'] = @yaml_configuration['notification_emails'].join(',')
     end
   end  
 
