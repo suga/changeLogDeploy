@@ -40,7 +40,7 @@ describe FileSystemReader do
       
       @file4 = Tempfile.new(['20130516','.txt'])
       FileUtils.touch @file4.path, :mtime => Time.new + 60*60*24
-      expect(FileSystemReader.get_files_change_log("/tmp", "txt", yml["lastReaderFile"]).size).to eq(1)
+      expect(FileSystemReader.get_files_change_log("/tmp", "txt", yml["last_read_file"]).size).to eq(1)
 
       @file4.close
       @file4.unlink
@@ -50,7 +50,7 @@ describe FileSystemReader do
     private
     def yaml_fixed_last_read_file(value)
       yaml = YAML.load_file("spec/changeLogConfigTest.yml")
-      yaml["lastReaderFile"] = value
+      yaml["last_read_file"] = value
       File.open("spec/changeLogConfigTest.yml", 'w+') {|f| f.write(yaml.to_yaml) }
       yaml      
     end    

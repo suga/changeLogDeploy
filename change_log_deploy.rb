@@ -1,12 +1,13 @@
 #!/usr/bin/ruby
 require 'ostruct'
 require 'optparse'
+require 'pony'
+require 'timeout'
 require File.dirname(__FILE__) + "/libs/validators/validator_path"
 require File.dirname(__FILE__) + "/libs/fileManager/file_system_facade"
 
 class ChangeLogDeploy
   attr_reader :options, :arguments, :configuration
-  attr_accessor :path_resource_change_log
   
   def initialize(arguments)
     @arguments = arguments
@@ -26,16 +27,18 @@ class ChangeLogDeploy
   
   def run
     get_options
-    facade = FileSystemFacade.new @options.path_change_log_configuration
-    puts facade.to_email.inspect
-    #SendEmail(facade.to_email).send
-    #facade.save_last_read_file
-  end
-  
+    facade = FileSystemFacade.new (@options.path_change_log_configuration)
+    begin
+    Timeout::timeout(10) {
+      Pony.mail(:via => :sendmail, :charset => 'utf-8', :to => facade.to_email.to, :cc => facade.to_email.cc, :from => facade.to_email.from, :subject => facade.to_email.subject, :body => facade.to_email.content)
+    }
+    facade.save_last_read_file
+    rescue
+      puts 'An error ocurred when sending the email'
+    end
+  end  
   
 end
 
 changeLog = ChangeLogDeploy.new(ARGV)
 changeLog.run
-
-

@@ -6,4 +6,3 @@ extension_files: txt
 limit_threads: 4
 from: noreply@someCompany.com
 subject: Latest updates web area
-lastReaderFile: 

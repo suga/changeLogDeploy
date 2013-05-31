@@ -59,7 +59,7 @@ describe ConfigurationFile do
       new_configuration = ConfigurationFile.new(@yaml_file.path)
       new_configurations = new_configuration.configurations
       expect('2013-05-25 01:17:38 -0300').to eq(new_configurations.last_read_file)  
-
+      expect(["sugamele.marco@gmail.com", "hlegius@gmail.com"]).to eq(new_configurations.notification_emails)
     end  
 
   end

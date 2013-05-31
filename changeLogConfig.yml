@@ -1,9 +1,8 @@
-## YAML Template.
 ---
-change_log_path: /home/marco/ruby_changeLogDeploy/changeLogs
-last_read_file:
-notification_emails: sugamele.marco@gmail.com, hlegius@gmail.com
-from: noreply@someCompany.com
+change_log_path: spec/changeLogDeploy
+last_read_file: 
+notification_emails: sugamele.marco@gmail.com
 subject: Latest updates web area
+from: noreply@someCompany.com
 extension_files: txt
 limit_threads: 4

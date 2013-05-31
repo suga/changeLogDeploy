@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + "/configuration_file"
 require File.dirname(__FILE__) + "/../threads/pool_threads"
+require 'ostruct'
 class FileSystemFacade
 
   attr_reader :configuration_file, :files_change_log, :configurations
@@ -11,9 +12,13 @@ class FileSystemFacade
   end
 
   def to_email
-    to_email = Array.new
-    to_email.push(@configurations.notification_emails)
-    to_email.push(merge_content_files)
+    to_email = OpenStruct.new
+    to_email.from = @configurations.from
+    to_email.subject = @configurations.subject
+    to_email.content = merge_content_files
+    to_email.to = @configurations.notification_emails[0]
+    to_email.cc = @configurations.notification_emails[1..-1].join(',')
+    to_email
   end
 
   def save_last_read_file
