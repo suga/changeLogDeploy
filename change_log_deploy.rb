@@ -7,7 +7,7 @@ require File.dirname(__FILE__) + "/libs/validators/validator_path"
 require File.dirname(__FILE__) + "/libs/fileManager/file_system_facade"
 
 class ChangeLogDeploy
-  attr_reader :options, :arguments, :configuration
+  attr_reader :options, :arguments
   
   def initialize(arguments)
     @arguments = arguments
