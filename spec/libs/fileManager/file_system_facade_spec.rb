@@ -143,7 +143,7 @@ describe FileSystemFacade do
         array_files
       end
     
-    @array_files = file.call (txt_yml)
+    @array_files = file.call(txt_yml)
     facade = FileSystemFacade.new @array_files[-1].path
     @to_email = facade.to_email  
   end

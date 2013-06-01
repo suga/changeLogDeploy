@@ -6,7 +6,7 @@ class FileSystemFacade
   attr_reader :configuration_file, :files_change_log, :configurations
 
   def initialize(path_change_log_configuration)
-    @files_change_log = Array.new
+    @files_change_log = nil
     @configuration_file = ConfigurationFile.new path_change_log_configuration
     @configurations = @configuration_file.configurations
   end
@@ -38,10 +38,7 @@ class FileSystemFacade
   end  
 
   def files_new
-    if (@files_change_log.empty?)
-      @files_change_log = FileSystemReader.get_files_change_log(@configurations.change_log_path, @configurations.extension_files, @configurations.last_read_file)
-    end
-    @files_change_log
+    @files_change_log ||= FileSystemReader.get_files_change_log(@configurations.change_log_path, @configurations.extension_files, @configurations.last_read_file)
   end
 
 end

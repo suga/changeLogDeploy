@@ -27,7 +27,7 @@ class ChangeLogDeploy
   
   def run
     get_options
-    facade = FileSystemFacade.new (@options.path_change_log_configuration)
+    facade = FileSystemFacade.new(@options.path_change_log_configuration)
     begin
     Timeout::timeout(10) {
       Pony.mail(:via => :sendmail, :charset => 'utf-8', :to => facade.to_email.to, :cc => facade.to_email.cc, :from => facade.to_email.from, :subject => facade.to_email.subject, :body => facade.to_email.content)
