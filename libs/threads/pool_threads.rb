@@ -17,14 +17,11 @@ class PoolThreads
     end    
     
     @files.each do |file|
-      while true do
-        sleep 0.1 if active_threads >= amount_threads        
-        Thread.new do
-          @content << "#{FileSystemReader.get_content file}"            
-          @content << "\r\n---------------\r\n" if queue.length > 1
-          queue.pop            
-        end
-        break
+      redo if active_threads > amount_threads
+      Thread.new do
+        @content << "#{FileSystemReader.get_content file}"            
+        @content << "\r\n---------------\r\n" if queue.length > 1
+        queue.pop            
       end
     end
 
