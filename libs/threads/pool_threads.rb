@@ -14,28 +14,21 @@ class PoolThreads
     queue = Queue.new
     @files.length.times do
       queue << 1
-    end
-    
+    end    
     
     @files.each do |file|
       while true do
-        if active_threads < amount_threads
-          Thread.new do            
-            @content << "#{FileSystemReader.get_content file}"            
-            if queue.length > 1
-              @content << "\r\n---------------\r\n"
-            end
-            queue.pop            
-          end
-          break
-        else
-          sleep 0.1
-        end  
+        sleep 0.1 if active_threads >= amount_threads        
+        Thread.new do
+          @content << "#{FileSystemReader.get_content file}"            
+          @content << "\r\n---------------\r\n" if queue.length > 1
+          queue.pop            
+        end
+        break
       end
     end
-    
-    join_threads
-    
+
+    join_threads    
   end
   
   def get_merge_content_files
