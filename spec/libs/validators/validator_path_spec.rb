@@ -1,14 +1,16 @@
 require File.dirname(__FILE__) + "/../../../libs/validators/validator_path"
+require 'tempfile'
 
 describe ValidatorPath do
-  before(:all) do
+  before(:each) do
     @path_not_existis = '/tmp/not_exists.yml'    
-    @path_exists = '/tmp/test_config.yml'
-    File.new('/tmp/test_config.yml', 'w')    
+    @file = Tempfile.new(['20130516','.yml'])
+    @path_exists = @file.path        
   end
 
-  after(:all) do
-   File.delete("/tmp/test_config.yml")
+  after(:each) do
+   @file.close
+   @file.unlink
   end
   
   it "The file exists, may not throw exception" do    
@@ -31,10 +33,22 @@ describe ValidatorPath do
     validator = ValidatorPath.new(@path_exists)
     expect { validator.the_file_has_permission_write? }.to_not raise_error
   end
-  
+
   it "The file is valid, we have no exception" do
     validator = ValidatorPath.new(@path_exists)
     expect { validator.is_valid? }.to_not raise_error
-  end  
+  end
+
+  it "The file is not writable for this, we have exception" do
+    FileUtils.chmod 0111, @path_exists
+    validator = ValidatorPath.new(@path_exists)
+    expect { validator.the_file_has_permission_write? }.to raise_error
+  end
+
+  it "The file has not read permission, we have exception" do
+    FileUtils.chmod 0111, @path_exists
+    validator = ValidatorPath.new(@path_exists)
+    expect { validator.the_file_has_permission_read? }.to raise_error
+  end
   
 end
