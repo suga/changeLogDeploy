@@ -43,7 +43,7 @@ describe PoolThreads do
       merge_contents.should match(/Description fixeds and bugfix\r\nfile8/)
       merge_contents.should match(/Description fixeds and bugfix\r\nfile9/)
       merge_contents.should match(/- á é à ç ü \r\nfile10/)
-      merge_contents.should match(/---------------/)
+      merge_contents.should match(/\r\n\r\n/)
     end    
   end
 

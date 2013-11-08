@@ -20,7 +20,7 @@ class PoolThreads
       redo if active_threads > amount_threads
       Thread.new do
         @content << "#{FileSystemReader.get_content file}"            
-        @content << "\r\n---------------\r\n" if queue.length > 1
+        @content << "\r\n\r\n" if queue.length > 1
         queue.pop            
       end
     end
