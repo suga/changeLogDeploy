@@ -41,7 +41,7 @@ class ChangeLogDeploy
       facade.save_last_read_file
     rescue Exception => e
       puts 'An error ocurred when sending the email'
-      puts 'Error: ' + e    
+      puts 'Error: ' + e.message    
     end
   end
 
