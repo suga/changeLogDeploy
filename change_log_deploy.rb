@@ -14,11 +14,15 @@ class ChangeLogDeploy
   
   def get_options
     @options = OpenStruct.new
+    @options.view_email = false
     opts = OptionParser.new
     opts.on('-p','--path [FILE]', 'Path to resource file configuration') { |p| 
       validate_args = ValidatorPath.new p
       validate_args.is_valid?
       @options.path_change_log_configuration = p
+    }
+    opts.on("-v", "--view", "Show email") { 
+      @options.view_email = true
     }
     opts.on("-h", "--help", "Show this message") { puts opts; exit }
     opts.parse!(@arguments) rescue abort 'Invalid options.'
@@ -28,11 +32,25 @@ class ChangeLogDeploy
     get_options
     facade = FileSystemFacade.new(@options.path_change_log_configuration)
     begin
+
+      if @options.view_email
+        return view facade
+      end
+
       Pony.mail(:via => :sendmail, :charset => 'utf-8', :to => facade.to_email.to, :cc => facade.to_email.cc, :from => facade.to_email.from, :subject => facade.to_email.subject, :body => facade.to_email.content)
       facade.save_last_read_file
-    rescue
+    rescue Exception => e
       puts 'An error ocurred when sending the email'
+      puts 'Error: ' + e    
     end
+  end
+
+  def view facade
+    puts 'To: '      + facade.to_email.to
+    puts 'Cc: '      + facade.to_email.cc
+    puts 'From: '    + facade.to_email.from
+    puts 'Subject: ' + facade.to_email.subject
+    puts 'Content: ' + facade.to_email.content
   end  
   
 end

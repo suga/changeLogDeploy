@@ -6,3 +6,5 @@ extension_files: txt
 limit_threads: 4
 from: noreply@someCompany.com
 subject: Latest updates web area
+prefix_body: Hello,\r\nFollow the latest changes made to the system.\r\n
+sufix_body: \r\nBest Regards

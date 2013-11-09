@@ -32,9 +32,11 @@ describe FileSystemFacade do
     end
 
     it "checks information (content) to send email" do
+       @to_email.content.should match(/abc/)
        @to_email.content.should match(/file1/)
        @to_email.content.should match(/file2/)
        @to_email.content.should match(/file3/)
+       @to_email.content.should match(/def/)
     end
   end
 
@@ -126,7 +128,7 @@ describe FileSystemFacade do
   def send_email_to (text_to_change_log_config_yml = "")
     
     emails = text_to_change_log_config_yml.empty? ? "\r\nnotification_emails: sugamele.marco@gmail.com, hlegius@gmail.com" : "\r\nnotification_emails: #{text_to_change_log_config_yml}"
-    txt_yml = "---\r\nchange_log_path: /tmp\r\nlast_read_file: \r\nextension_files: txt\r\nlimit_threads: 4\r\nfrom: noreply@someCompany.com\r\nsubject: to test#{emails}"
+    txt_yml = "---\r\nchange_log_path: /tmp\r\nlast_read_file: \r\nextension_files: txt\r\nlimit_threads: 4\r\nfrom: noreply@someCompany.com\r\nsubject: to test#{emails}\r\nprefix_body: abc\r\nsufix_body: def"
     
     file = lambda do  |text_config_yml|
         array_files = Array.new

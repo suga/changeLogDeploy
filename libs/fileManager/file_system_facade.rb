@@ -29,7 +29,7 @@ class FileSystemFacade
   def merge_content_files
     content = PoolThreads.new files_new
     content.run_limit_threads @configurations.limit_threads
-    content.get_merge_content_files
+    @configurations.prefix_body+content.get_merge_content_files+@configurations.sufix_body
   end
 
   def last_file_reader
