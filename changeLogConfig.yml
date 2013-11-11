@@ -6,5 +6,5 @@ subject: Latest updates web area
 from: noreply@someCompany.com
 extension_files: txt
 limit_threads: 4
-prefix_body: Hello,\r\nFollow the latest changes made to the system.\r\n
-sufix_body: \r\nBest Regards
+prefix_body: "Hello,\r\n\r\nFollow the latest changes made to the system.\r\n\r\n"
+sufix_body: "\r\n\r\nBest Regards"
