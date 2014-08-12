@@ -31,8 +31,7 @@ class ChangeLogDeploy
   def run
     get_options 
     return view if options.view_email
-    send_mail
-    facade.save_last_read_file
+    send_mail and facade.save_last_read_file
   rescue Exception => e
     puts 'An error ocurred when sending the email'
     puts "Error: #{e.message}"
@@ -50,13 +49,13 @@ class ChangeLogDeploy
 
   def send_mail
     Pony.mail(
-      :via => :sendmail, 
-      :charset => 'utf-8', 
-      :to => facade.to_email.to, 
-      :cc => facade.to_email.cc, 
-      :from => facade.to_email.from, 
-      :subject => facade.to_email.subject, 
-      :body => facade.to_email.content
+      via:     :sendmail, 
+      charset: 'utf-8', 
+      to:      facade.to_email.to, 
+      cc:      facade.to_email.cc, 
+      from:    facade.to_email.from, 
+      subject: facade.to_email.subject, 
+      body:    facade.to_email.content
     )
   end
 
