@@ -30,7 +30,7 @@ class ChangeLogDeploy
   
   def run
     get_options
-    return view(facade) if options.view_email
+    return view if options.view_email
     Pony.mail(:via => :sendmail, :charset => 'utf-8', :to => facade.to_email.to, :cc => facade.to_email.cc, :from => facade.to_email.from, :subject => facade.to_email.subject, :body => facade.to_email.content)
     facade.save_last_read_file
   rescue Exception => e
@@ -38,7 +38,7 @@ class ChangeLogDeploy
     puts "Error: e.message"
   end
 
-  def view(facade)
+  def view
     puts 'To: '      + facade.to_email.to
     puts 'Cc: '      + facade.to_email.cc
     puts 'From: '    + facade.to_email.from
