@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/suga/changeLogDeploy/badges/gpa.svg)](https://codeclimate.com/github/suga/changeLogDeploy)
+
 ChangeLogDeploy
 ==========
 
