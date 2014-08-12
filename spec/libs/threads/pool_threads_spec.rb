@@ -33,17 +33,17 @@ describe PoolThreads do
       contents.run_limit_threads 9
       merge_contents = contents.get_merge_content_files
 
-      merge_contents.should match(/Description fixeds and bugfix\r\nfile1/)
-      merge_contents.should match(/Description fixeds and bugfix\r\nfile2/)
-      merge_contents.should match(/Description fixeds and bugfix\r\nfile3/)
-      merge_contents.should match(/Description fixeds and bugfix\r\nfile4/)
-      merge_contents.should match(/Description fixeds and bugfix\r\nfile5/)
-      merge_contents.should match(/Description fixeds and bugfix\r\nfile6/)
-      merge_contents.should match(/Description fixeds and bugfix\r\nfile7/)
-      merge_contents.should match(/Description fixeds and bugfix\r\nfile8/)
-      merge_contents.should match(/Description fixeds and bugfix\r\nfile9/)
-      merge_contents.should match(/- á é à ç ü \r\nfile10/)
-      merge_contents.should match(/\r\n\r\n/)
+      expect(merge_contents).to match(/Description fixeds and bugfix\r\nfile1/)
+      expect(merge_contents).to match(/Description fixeds and bugfix\r\nfile2/)
+      expect(merge_contents).to match(/Description fixeds and bugfix\r\nfile3/)
+      expect(merge_contents).to match(/Description fixeds and bugfix\r\nfile4/)
+      expect(merge_contents).to match(/Description fixeds and bugfix\r\nfile5/)
+      expect(merge_contents).to match(/Description fixeds and bugfix\r\nfile6/)
+      expect(merge_contents).to match(/Description fixeds and bugfix\r\nfile7/)
+      expect(merge_contents).to match(/Description fixeds and bugfix\r\nfile8/)
+      expect(merge_contents).to match(/Description fixeds and bugfix\r\nfile9/)
+      expect(merge_contents).to match(/- á é à ç ü \r\nfile10/)
+      expect(merge_contents).to match(/\r\n\r\n/)
     end    
   end
 
