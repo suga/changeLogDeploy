@@ -39,11 +39,11 @@ class ChangeLogDeploy
 
   def view
     puts <<-VIEW.gsub /^\s+/, ""
-      To: #{ facade.to_email.to }
-      Cc: #{ facade.to_email.cc }
-      From: #{ facade.to_email.from }
-      Subject: #{ facade.to_email.subject }
-      Content: #{ facade.to_email.content } 
+      To: #{facade.to_email.to}
+      Cc: #{facade.to_email.cc}
+      From: #{facade.to_email.from}
+      Subject: #{facade.to_email.subject}
+      Content: #{facade.to_email.content} 
     VIEW
   end  
 
