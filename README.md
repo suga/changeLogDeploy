@@ -1,5 +1,7 @@
 [![Code Climate](https://codeclimate.com/github/suga/changeLogDeploy/badges/gpa.svg)](https://codeclimate.com/github/suga/changeLogDeploy)
-
+<br>
+![alt text](https://travis-ci.org/suga/changeLogDeploy.svg?branch=master "Build by Travis")
+<br>
 ChangeLogDeploy
 ==========
 
