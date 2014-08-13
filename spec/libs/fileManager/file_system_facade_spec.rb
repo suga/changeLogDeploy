@@ -32,11 +32,11 @@ describe FileSystemFacade do
     end
 
     it "checks information (content) to send email" do
-       @to_email.content.should match(/abc/)
-       @to_email.content.should match(/file1/)
-       @to_email.content.should match(/file2/)
-       @to_email.content.should match(/file3/)
-       @to_email.content.should match(/def/)
+        expect(@to_email.content).to match(/abc/)
+        expect(@to_email.content).to match(/file1/)
+        expect(@to_email.content).to match(/file2/)
+        expect(@to_email.content).to match(/file3/)
+        expect(@to_email.content).to match(/def/)
     end
   end
 

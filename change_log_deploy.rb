@@ -29,30 +29,41 @@ class ChangeLogDeploy
   end
   
   def run
-    get_options
-    facade = FileSystemFacade.new(@options.path_change_log_configuration)
-    begin
-
-      if @options.view_email
-        return view facade
-      end
-
-      Pony.mail(:via => :sendmail, :charset => 'utf-8', :to => facade.to_email.to, :cc => facade.to_email.cc, :from => facade.to_email.from, :subject => facade.to_email.subject, :body => facade.to_email.content)
-      facade.save_last_read_file
-    rescue Exception => e
-      puts 'An error ocurred when sending the email'
-      puts 'Error: ' + e.message    
-    end
+    get_options 
+    return view if options.view_email
+    send_mail and facade.save_last_read_file
+  rescue Exception => e
+    puts 'An error ocurred when sending the email'
+    puts "Error: #{e.message}"
   end
 
-  def view facade
-    puts 'To: '      + facade.to_email.to
-    puts 'Cc: '      + facade.to_email.cc
-    puts 'From: '    + facade.to_email.from
-    puts 'Subject: ' + facade.to_email.subject
-    puts 'Content: ' + facade.to_email.content
+  def view
+    puts <<-VIEW.gsub /^\s+/, ""
+      To: #{facade.to_email.to}
+      Cc: #{facade.to_email.cc}
+      From: #{facade.to_email.from}
+      Subject: #{facade.to_email.subject}
+      Content: #{facade.to_email.content} 
+    VIEW
   end  
-  
+
+  private 
+
+  def send_mail
+    Pony.mail(
+      via:     :sendmail, 
+      charset: 'utf-8', 
+      to:      facade.to_email.to, 
+      cc:      facade.to_email.cc, 
+      from:    facade.to_email.from, 
+      subject: facade.to_email.subject, 
+      body:    facade.to_email.content
+    )
+  end
+
+  def facade
+    @facade ||= FileSystemFacade.new(options.path_change_log_configuration)
+  end  
 end
 
 changeLog = ChangeLogDeploy.new(ARGV)
