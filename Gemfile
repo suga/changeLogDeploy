@@ -7,5 +7,6 @@ group :test do
 	gem 'rspec', '~> 3.0.0'
 	gem 'simplecov', '~> 0.9.0', :require => false, :group => :test
 	gem "rake", :group => :test
+        gem 'coveralls', require: false
 end
 

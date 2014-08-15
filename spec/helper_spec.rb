@@ -1,4 +1,8 @@
 #COVERAGE=true rspec -I spec/
+
+require 'coveralls'
+Coveralls.wear!
+
 if ENV['COVERAGE']
     require 'simplecov'
     SimpleCov.start do
