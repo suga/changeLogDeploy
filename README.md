@@ -1,5 +1,5 @@
 ![alt text](https://travis-ci.org/suga/changeLogDeploy.svg?branch=master "Build by Travis") <br>
- [![Coverage Status](https://coveralls.io/repos/suga/changeLogDeploy/badge.png)](https://coveralls.io/r/suga/changeLogDeploy) <br>
+ [![Test Coverage](https://codeclimate.com/github/suga/changeLogDeploy/badges/coverage.svg)](https://codeclimate.com/github/suga/changeLogDeploy) <br>
  [![Code Climate](https://codeclimate.com/github/suga/changeLogDeploy/badges/gpa.svg)](https://codeclimate.com/github/suga/changeLogDeploy)
 <br>
 ChangeLogDeploy
