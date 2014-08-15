@@ -8,5 +8,6 @@ group :test do
 	gem 'simplecov', '~> 0.9.0', :require => false, :group => :test
 	gem "rake", :group => :test
         gem 'coveralls', require: false
+        gem "codeclimate-test-reporter", group: :test, require: nil
 end
 

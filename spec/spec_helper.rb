@@ -3,6 +3,10 @@
 require 'coveralls'
 Coveralls.wear!
 
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
+
 if ENV['COVERAGE']
     require 'simplecov'
     SimpleCov.start do
